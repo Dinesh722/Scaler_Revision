@@ -1,0 +1,67 @@
+*********************Brute Force***************************
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // YOUR CODE GOES HERE
+        // Please take input and print output to standard input/output (stdin/stdout)
+        // DO NOT USE ARGUMENTS FOR INPUTS
+        // E.g. 'Scanner' for input & 'System.out' for output
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        for(int i=0;i<n;i++){
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            int min = Math.min(a,b);
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            int min = Math.min(a,b);
+            min = (a==0?b:min);
+            min = (b==0?a:min);
+            int count = 0;
+            // System.out.println("min="+min);
+            for(int j=min;j>=1;j--){
+                if(a%j==0 && b%j==0){
+                    System.out.println(j);
+                    break;
+                }
+            }
+        }
+        
+    }
+}
+Time complexity = O(n*min(a,b))
+//time complexity n is total number of times we need to find the gcd as per the question
+Space complexity = O(1)
+
+*********************idea 1***************************
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // YOUR CODE GOES HERE
+        // Please take input and print output to standard input/output (stdin/stdout)
+        // DO NOT USE ARGUMENTS FOR INPUTS
+        // E.g. 'Scanner' for input & 'System.out' for output
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        for(int i=0;i<n;i++){
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            int min = Math.min(a,b);
+            System.out.println(gcd(a,b));
+        }
+    }
+
+    public static int gcd(int a,int b){
+        if(b==0){
+            return a;
+        }
+        return gcd(b,a%b);
+    }
+}
+
+Time complexity = 
+Space Complexity = O(1)
