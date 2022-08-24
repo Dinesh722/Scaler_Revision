@@ -1,3 +1,5 @@
+**********************Brute Force 1******************************************
+
 import java.util.*;
 class Main {
 	public static void main(String args[]) {
@@ -21,3 +23,5 @@ class Main {
 
 Time Complexity : O(n^2)
 Space Complexit : O(1)
+
+***************************idea 1***********************************************
