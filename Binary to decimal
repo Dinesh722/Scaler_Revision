@@ -1,0 +1,17 @@
+ Input = 1011
+ 1   0   1   1  =  8 + 0 + 2 + 1  =  11
+2^3 2^2 2^1 2^0
+
+
+static void decimalValSoln(long n){
+    long binaryVal = 0;
+    long decimalVal = 0;
+    int powerOf2 = 1;
+    while(n!=0){
+        binaryVal = n%10;
+        decimalVal = decimalVal + (powerOf2*binaryVal);
+        n=n/10;
+        powerOf2 = powerOf2 * 2;
+    }
+    System.out.println(decimalVal);
+}
