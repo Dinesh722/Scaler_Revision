@@ -1,0 +1,19 @@
+n=50
+
+import java.util.*;
+import java.lang.*;
+
+public class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int bin = 0;
+    int pow = 1;
+    while(n!=0){
+      bin = (bin*pow) + (n%2);
+      pow = pow * 10;
+      n/=2;
+    }
+    return bin
+  }
+}
