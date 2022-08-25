@@ -1,12 +1,15 @@
-***************Ceil and Floor*******************************
+***************Ceil and Floor******************
 Ceil value = greatest number
   Eg: 4.1 => 5
 
 Floor = smallest number
   Eg: 4.9 => 4
   
-***************Maths*******************************
+***************Maths******************
 Arithmetic Progression
   a+(n-1)d //clearly written in revision note book
 Sum of N natural Numbers
   n(n+1)/2
+
+***************LCM******************
+LCM = (A*B) / GCD(A,B)
