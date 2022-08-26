@@ -1,0 +1,31 @@
+You are given an integer array A and an integer B.
+You are required to return the count of pairs having sum equal to B.
+NOTE: pair (i,j) and (j,i) are same.
+
+Input 1:
+A = [1,2,3,2,1]
+B = 5
+
+import java.util.*;
+import java.lang.*;
+public class Main{
+  public static int main(ArrayList<Integer> A,int B){
+    int n = A.size();
+    HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
+    int c = 0;
+    for(int i=0;i<n;i++){
+        if(hm.containsKey(B-A.get(i))){
+            c = c + hm.get(B-A.get(i)); // reason written in revision notebook
+        }
+        if(hm.containsKey(A.get(i))){
+            hm.put(A.get(i),hm.get(A.get(i))+1);
+        }else{
+            hm.put(A.get(i),1);
+        }
+    }
+    return c;
+  }
+}
+
+Time Complexity : O(n)
+Space Complexity : O(n)
