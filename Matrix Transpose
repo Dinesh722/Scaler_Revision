@@ -1,0 +1,19 @@
+import java.util.*;
+import java.lang.*;
+public class Main{
+  public ArrayList<ArrayList<Integer>> solve(ArrayList<ArrayList<Integer>> A){
+    int r = A.size();
+    int c = A.get(0).size();
+    ArrayList<ArrayList<Integer>> val = new ArrayList<ArrayList<Integer>>();
+    for(int j=0;j<c;j++){
+      val.add(ArrayList<Integer>());
+      for(int i=0;i<r;i++){
+        val.get(i).add(A.get(i).get(j)); //get col,  add row
+      }
+    }
+    return val;
+  }
+}
+
+Time Complexity = O(r*c);
+Space Complexity = O(r*c);
