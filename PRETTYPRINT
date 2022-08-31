@@ -1,0 +1,48 @@
+Input 1:
+A = 4
+
+Output 1:
+4 4 4 4 4 4 4 
+4 3 3 3 3 3 4 
+4 3 2 2 2 3 4 
+4 3 2 1 2 3 4 
+4 3 2 2 2 3 4 
+4 3 3 3 3 3 4 
+4 4 4 4 4 4 4 
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> prettyPrint(int A) {
+        //TC = O(n^2);
+        //Sc = O(n);
+        ArrayList<ArrayList<Integer>> val = new ArrayList<ArrayList<Integer>>();
+        int n = A;
+        for(int i=n;i>=1;i--){
+            val.add(new ArrayList<Integer>());
+
+            //for 1st section
+            int x = n;
+            for(int j=n;j>=1;j--){
+                if(j>=i){
+                    val.get(n-i).add(j);
+                    x = j;
+                }else{
+                    val.get(n-i).add(x);
+                }
+            }
+
+            //for second set
+            for(int j=2;j<=n;j++){
+                if(j<=i){
+                    val.get(n-i).add(x);
+                }else{
+                    val.get(n-i).add(j);
+                }
+            }
+        }
+
+        for(int i=n-2;i>=0;i--){
+            val.add(val.get(i));
+        }
+        return val;
+    }
+}
