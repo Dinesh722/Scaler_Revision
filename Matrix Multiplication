@@ -1,0 +1,30 @@
+Input 1:
+
+ A = [[1, 2],            B = [[5, 6],
+      [3, 4]]                 [7, 8]] 
+
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> solve(ArrayList<ArrayList<Integer>> A, ArrayList<ArrayList<Integer>> B) {
+        ArrayList<ArrayList<Integer>> val = new ArrayList<ArrayList<Integer>>();
+        int r1 = A.size();
+        int c1 = A.get(0).size();
+        int r2 = B.size();
+        int c2 = B.get(0).size();
+        for(int i=0;i<r1;i++){
+            val.add(new ArrayList<Integer>());
+            for(int j=0;j<c2;j++){
+                int sum = 0;
+                for(int k=0;k<c1;k++){ //this can be r2 also
+                    sum = sum + (A.get(i).get(k) * B.get(k).get(j));
+                }
+                val.get(i).add(sum);
+            }
+        }
+        // System.out.println(A.get(0).size());
+        return val;
+    }
+}
+
+//TC = O(r1*c2*c1)
+//SC = O(r1*c2)
