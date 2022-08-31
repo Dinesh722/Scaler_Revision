@@ -1,0 +1,21 @@
+You are given a character string A having length N, consisting of only lowercase and uppercase latin letters.
+You have to toggle case of each character of string A. For e.g 'A' is changed to 'a', 'e' is changed to 'E', etc.
+
+Input 1:
+A = "tHiSiSaStRiNg" 
+Output 1:
+ThIsIsAsTrInG 
+
+public class Solution {
+    public String solve(String A) {
+        StringBuilder B = new StringBuilder();
+        char a;
+        for(int i=0;i<A.length();i++){
+            a = (char)(A.charAt(i)^32);
+            B.append(a);
+        }
+        return B.toString();
+    }
+}
+//TC:O(n)
+//SC:O(n)
