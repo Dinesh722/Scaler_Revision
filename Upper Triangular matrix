@@ -14,10 +14,13 @@ Output 1: 1
 Output 2: 0 
 
 for(int i=0;i<r,i++){
-  for(int j=0;j<i;j++){
+  for(int j=0;j<i;j++){ //this is because it wont take the first row. Check the revision book
     if(A.get(i).get(j)!=0){
       return =0;
     }
   }
 }
 return 1;
+
+// TC = O(n^2)
+//SC = O(1) 
