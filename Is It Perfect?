@@ -1,0 +1,25 @@
+For each given integer A, you have to tell whether it is a perfect number or not.
+A perfect number is a positive integer which is equal to the sum of its proper positive divisors.
+
+A =  4
+1,2 => 1+2 = 3 
+op = NO
+
+A = 6
+1,2,3 => 1+2+3 = 6
+op = Yes
+
+int a = sc.nextInt();
+int sum = 0;
+for(int i=1;i<=a/2;i++){
+  if(a%i==0){
+    sum += i;
+  }
+}
+if(sum==a){
+  return "YES";
+}
+return "NO";
+
+TC = O(n/2) -> O(n)
+SC = O(1)
