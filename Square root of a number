@@ -1,0 +1,21 @@
+Given a number A. Return square root of the number if it is perfect square otherwise return -1.
+
+A = 100
+ans = 10
+
+int s = 0;
+int e = A;
+while(s<=e){
+  int mid = s+(e-s)/2;
+  if(mid*mid == A){
+    return mid;
+  }else if(mid*mid>A){
+    e = mid - 1;
+  }else{
+    s = mid + 1;
+  }
+}
+return -1;
+
+TC = O(logN)
+SC = O(1)
