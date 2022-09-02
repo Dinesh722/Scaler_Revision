@@ -1,0 +1,104 @@
+Given an array A and an integer B. A pair(i, j) in the array is a good pair if i != j and (A[i] + A[j] == B). Check if any good pair exist or not.
+
+Input 1:
+A = [1,2,3,4]
+B = 7
+op = 1
+
+Input 2:
+A = [1,2,4]
+B = 4
+op = 0
+
+Input 3:
+A = [1,2,2]
+B = 4
+op = 1
+
+***********************Brute Force*************************
+TC = O(n^2)
+SC = O(1)
+
+public class Solution {
+    public int solve(ArrayList<Integer> A, int B) {
+        int n = A.size();
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(A.get(i)+A.get(j)==B){
+                    return 1;
+                }
+            }
+        }
+        return 0;
+    }
+}
+
+*******************Two pointer approach*************************
+TC = O(nlogn)
+SC = O(1)
+
+public class Solution {
+    public int solve(ArrayList<Integer> A, int B) {
+        int n = A.size();
+        int s = 0;
+        int e = n-1;
+        Collections.sort(A);
+        while(s<e){
+            long sum = A.get(s) + A.get(e);
+            if(sum==B){
+                return 1;
+            }else if(sum<B){
+                if(A.get(s)<=A.get(e)){
+                    s++;
+                }else{
+                    e--;
+                }
+            }else{
+                if(A.get(s)>=A.get(e)){
+                    s++;
+                }else{
+                    e--;
+                }
+            }
+        }
+        return 0;
+    }
+}
+
+
+****************HashMap*********************
+TC = O(n)
+SC = O(n)
+
+public class Solution {
+    public int solve(ArrayList<Integer> A, int B) {
+        int n = A.size();
+        HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
+        for(int i=0;i<n;i++){
+            int x = A.get(i);
+            if(hm.containsKey(x)){
+                hm.put(x,hm.get(x)+1);
+            }else{
+                hm.put(x,1);
+            }
+        }
+        for(int i=0;i<n;i++){
+            int x = A.get(i);
+            if(hm.containsKey(B-x)){
+                if((B-x) == x){
+                    if(hm.get(B-x)>1){
+                        return 1;
+                    }
+                    continue;
+                }
+                return 1;
+            }
+        }
+        return 0;
+    }
+}
+
+
+
+
+
