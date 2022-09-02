@@ -1,0 +1,82 @@
+Given an array of integers A and multiple values in B, which represents the number of times array A needs to be left rotated.
+Find the rotated array for each value and return the result in the from of a matrix where ith row represents the rotated array for the ith value in B.
+
+A = [1, 2, 3, 4, 5]
+B = [2, 3]
+op = [ [3, 4, 5, 1, 2]
+     [4, 5, 1, 2, 3] ]
+     
+******************Brute Force************************
+public class Solution {
+    public ArrayList<ArrayList<Integer>> solve(ArrayList<Integer> Z, ArrayList<Integer> B) {
+        ArrayList<ArrayList<Integer>> val = new ArrayList<ArrayList<Integer>>();
+        for(int i=0;i<B.size();i++){
+            ArrayList<Integer> A = new ArrayList<Integer>(Z);
+            reverseWhole(A);
+            reverseLeft(B.get(i)%A.size(),A);
+            reverseRight(B.get(i)%A.size(),A);
+            val.add(new ArrayList<Integer>(A));
+        }
+        return val;
+    }
+
+    public static void reverseWhole(ArrayList<Integer> A){
+        int n = A.size();
+        for(int i=0;i<n;i++){
+            if(i>n-i-1){
+                break;
+            }
+            int temp = A.get(i);
+            A.set(i,A.get(n-i-1));
+            A.set((n-i-1),temp);
+        }
+    }
+
+    public static void reverseLeft(int b,ArrayList<Integer> A){
+        int n = A.size();
+        for(int i=0;i<n-b;i++){
+            if(i>(n-b-i-1)){
+                break;
+            }
+            int temp = A.get(i);
+            A.set(i,A.get(n-b-i-1));
+            A.set(n-b-i-1,temp);
+        }
+    }
+
+    public static void reverseRight(int b,ArrayList<Integer> A){
+        int n = A.size();
+        int count = 0;
+        for(int i=n-b;i<n;i++){
+            if(i>(n-count-1)){
+                break;
+            }
+            int temp = A.get(i);
+            A.set(i,A.get(n-count-1));
+            A.set(n-count-1,temp);
+            count++;
+        }
+    }
+}
+
+******************Optimized************************
+TC = O(m*n);
+SC = O(n)
+public class Solution {
+    public ArrayList<ArrayList<Integer>> solve(ArrayList<Integer> Z, ArrayList<Integer> B) {
+        int n = Z.size();
+        int m = B.size();
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<ArrayList<Integer>>();
+        for(int i=0;i<m;i++){
+            ArrayList<Integer> temp = new ArrayList<Integer>();
+            for(int j=0;j<n;j++){
+                temp.add( Z.get( (j+B.get(i)) % n ) );
+            }
+            ans.add(temp);
+        }
+        return ans;
+    }
+}
+
+
+
