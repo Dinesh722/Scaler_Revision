@@ -1,0 +1,29 @@
+public class Solution {
+    public ArrayList<Long> rangeSum(ArrayList<Integer> A, ArrayList<ArrayList<Integer>> B) {
+        
+        ArrayList<Long> pf = new ArrayList<Long>();
+        ArrayList<Long> ans = new ArrayList<Long>();
+        prefixSum(pf,A);
+        for(int i=0;i<B.size();i++){  //O(q)
+            if(B.get(i).get(0)==1){
+                ans.add(pf.get((B.get(i).get(1)-1)));
+            }else{
+                ans.add(pf.get((B.get(i).get(1)-1)) -  pf.get((B.get(i).get(0)-2)));
+            }
+        }
+        return ans;
+    }
+
+    public static void prefixSum(ArrayList<Long> pf,ArrayList<Integer> A){  // O(n)
+        for(int i=0;i<A.size();i++){
+            if(i==0){
+                pf.add((long)A.get(i));
+            }else{
+                pf.add(pf.get(i-1)+(long)A.get(i));
+            }
+        }
+    }
+}
+
+TC = O(n+q)
+SC = O(n)
