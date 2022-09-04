@@ -1,0 +1,63 @@
+Given an array, arr[] of size N, the task is to find the count of array indices such that removing an element from these 
+indices makes the sum of even-indexed and odd-indexed array elements equal.
+
+A=[2, 1, 6, 4]
+Output 1:
+1
+
+A=[1, 1, 1]
+Output 2:
+3
+
+
+TC = O(n)
+SC = O(n)
+public class Solution {
+    public int solve(ArrayList<Integer> A) {
+        int n = A.size();
+        ArrayList<Integer> pfEven = new ArrayList<Integer>();
+        ArrayList<Integer> pfOdd = new ArrayList<Integer>();
+        evenPrefix(pfEven,A,n);
+        oddPrefix(pfOdd,A,n);
+        int even = 0;
+        int odd = 0;
+        int c = 0;
+        for(int i=0;i<n;i++){
+            if(i==0){
+                even = pfOdd.get(n-1);
+                odd = pfEven.get(n-1);
+            }else{
+                even = pfEven.get(i-1) + (pfOdd.get(n-1) - pfOdd.get(i));
+                odd = pfOdd.get(i-1) + (pfEven.get(n-1) - pfEven.get(i));
+            }
+            if(even==odd){
+                c++;
+            }
+        }
+        return c;
+    }
+
+    public static void evenPrefix(ArrayList<Integer> pfEven,ArrayList<Integer> A, int n){
+        for(int i=0;i<n;i++){
+            if(i==0){
+                pfEven.add(A.get(i));
+            }else if(i%2==0){
+                pfEven.add(pfEven.get(i-1)+A.get(i));
+            }else{
+                pfEven.add(pfEven.get(i-1));
+            }
+        }
+    }
+
+    public static void oddPrefix(ArrayList<Integer> pfOdd,ArrayList<Integer> A, int n){
+        for(int i=0;i<n;i++){
+            if(i==0){
+                pfOdd.add(0);
+            }else if(i%2!=0){
+                pfOdd.add(pfOdd.get(i-1)+A.get(i));
+            }else{
+                pfOdd.add(pfOdd.get(i-1));
+            }
+        }
+    }
+}
