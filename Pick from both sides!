@@ -1,0 +1,52 @@
+You are given an integer array A of size N.
+You have to pick B elements in total. Some (possibly 0) elements from left end of array A and some (possibly 0) from 
+the right end of array A to get the maximum sum.
+
+Find and return this maximum possible sum.
+
+NOTE: Suppose B = 4, and array A contains 10 elements, then
+
+You can pick the first four elements or can pick the last four elements, or can pick 1 from front and 3 from the back, etc. 
+You need to return the maximum possible sum of elements you can pick.
+
+ A = [5, -2, 3 , 1, 2]
+ B = 3
+ Output 1: 8
+ 
+ A = [1, 2]
+ B = 1
+ Output 2: 2
+ 
+ 
+ TC = O(n)
+ SC = O(n)
+ public class Solution {
+    public int solve(ArrayList<Integer> A, int B) {
+
+        int n = A.size();
+        ArrayList<Integer> pf = new ArrayList<Integer>();
+        pf.add(A.get(0));
+        for(int i=1;i<n;i++){
+            pf.add(pf.get(i-1)+A.get(i));
+        }
+        if(B==n){
+            return pf.get(n-1);
+        }
+        // System.out.println(n+" "+B);
+        int sum = 0;
+        int ans = Integer.MIN_VALUE;
+        for(int i=0;i<=B;i++){
+            sum = 0;
+            if(i==0){
+                sum = pf.get(n-1) - pf.get(n-B-1);
+            }else if(i==B){
+                sum = pf.get(B-1);
+            }else{
+                sum = pf.get(i-1) + (pf.get(n-1) - pf.get(n-B-1+i));
+            }
+            // System.out.println(sum);
+            ans = Math.max(ans,sum);
+        }
+        return ans;
+    }
+}
