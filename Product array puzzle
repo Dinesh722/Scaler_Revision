@@ -1,0 +1,59 @@
+Given an array of integers A, find and return the product array of the same size where the ith element of the product array will be equal 
+to the product of all the elements divided by the ith element of the array.
+
+Note: It is always possible to form the product array with integer (32 bit) values. Solve it without using the division operator.
+
+Input 1:
+    A = [1, 2, 3, 4, 5]
+Output 1:
+    [120, 60, 40, 30, 24]
+
+Input 2:
+    A = [5, 1, 10, 1]
+Output 2:
+    [10, 50, 5, 50]
+
+
+TC = O(n)
+SC = O(n)
+public class Solution {
+    public ArrayList<Integer> solve(ArrayList<Integer> A) {
+        //explanation in revision note book
+        int n = A.size();
+        ArrayList<Integer> pf = new ArrayList<Integer>();
+        ArrayList<Integer> sf = new ArrayList<Integer>();
+        prefixProd(A,pf);
+        suffixProd(A,sf);
+
+        ArrayList<Integer> ans = new ArrayList<Integer>();
+        for(int i=0;i<n;i++){
+            if(i==0){
+                ans.add(sf.get(i+1));
+            }else if(i==n-1){
+                ans.add(pf.get(i-1));
+            }else{
+                ans.add(pf.get(i-1) * sf.get(i+1));
+            }
+        }
+        return ans;
+    }
+
+    public static void prefixProd(ArrayList<Integer> A, ArrayList<Integer> pf){
+        int n = A.size();
+        pf.add(A.get(0));
+        for(int i=1;i<n;i++){
+            pf.add(pf.get(i-1) * A.get(i));
+        }
+    }
+
+    public static void suffixProd(ArrayList<Integer> A, ArrayList<Integer> sf){
+        int n = A.size();
+        for(int i=0;i<n;i++){
+            sf.add(1);
+        }
+        sf.set(n-1,A.get(n-1));
+        for(int i=n-2;i>=0;i--){
+            sf.set(i,sf.get(i+1) * A.get(i));
+        }
+    }
+}
