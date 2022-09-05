@@ -1,0 +1,26 @@
+You are given an integer array A of length N.
+You have to find the sum of all subarray sums of A.
+More formally, a subarray is defined as a contiguous part of an array which we can obtain by deleting zero or more elements from either end of the array.
+A subarray sum denotes the sum of all the elements of that subarray.
+
+A = [1, 2, 3]
+ans = 20
+
+*****************Contribution tehnique************************
+TC = O(n)
+SC = o(1)
+public class Solution {
+    public Long subarraySum(ArrayList<Integer> A) {
+        long sum = 0L;
+        long total = 0L;
+        int n = A.size();
+        for(int i=0;i<n;i++){
+            int s = (i+1)
+            int e = (n-1)
+            total = (long)s * e;
+            long contribution = total * (long)A.get(i);
+            sum = sum + contribution;
+        }
+        return (sum);
+    }
+}
