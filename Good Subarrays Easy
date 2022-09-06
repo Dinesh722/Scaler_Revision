@@ -1,0 +1,61 @@
+Given an array of integers A, a subarray of an array is said to be good if it fulfills any one of the criteria:
+1. Length of the subarray is be even, and the sum of all the elements of the subarray must be less than B.
+2. Length of the subarray is be odd, and the sum of all the elements of the subarray must be greater than B.
+Your task is to find the count of good subarrays in A.
+
+A = [1, 2, 3, 4, 5]
+B = 4
+op = 6
+
+*********************************************
+//get sum using pf
+//iterate and get the count
+
+Tc = O(n^2);
+SC = O(n);
+public class Solution {
+    public int solve(ArrayList<Integer> A, int B) {
+        int n = A.size();
+        ArrayList<Integer> pf = new ArrayList<Integer>();
+        getPrefix(A,pf);
+        int c = 0;
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                int len = j-i; 
+                //if len is 0 then 1 element is present
+                //so %2==0 si considered as odd and %2==1 is considered as even
+                if(i==0){
+                    if(len%2==0){ // this is odd
+                        if(pf.get(j)>B){
+                            c++;
+                        }
+                    }else{ //this is even
+                        if(pf.get(j)<B){
+                            c++;
+                        }
+                    }
+                }else{
+                    int val = pf.get(j) - pf.get(i-1);
+                    if(len%2==0){ //this is odd
+                        if(val>B){
+                            c++;
+                        }
+                    }else{ //this is even
+                        if(val<B){
+                            c++;
+                        }
+                    }
+                }
+            }
+        }
+        return c;
+    }
+
+    public static void getPrefix(ArrayList<Integer> A,ArrayList<Integer> pf){
+        int n = A.size();
+        pf.add(A.get(0));
+        for(int i=1;i<n;i++){
+            pf.add(pf.get(i-1) + A.get(i));
+        }
+    }
+}
