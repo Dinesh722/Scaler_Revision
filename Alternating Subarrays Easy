@@ -17,7 +17,9 @@ Input 2:
  
  *************************************
  
- TC = need to confirm
+ TC = N^2(from TA text request)
+ The time complexity of this code is O(N^2) because you're running 2 loops and both are in the range of ~N !
+ Though this is a optimal solution because N is in the range of 10^3 so N^2 would be 10^6 and that is enough to pass the cases!
  SC = O(n)
  
  public class Solution {
