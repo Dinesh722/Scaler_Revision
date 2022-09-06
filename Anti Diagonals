@@ -1,0 +1,52 @@
+Give a N * N square matrix A, return an array of its anti-diagonals. Look at the example for more details.
+
+Input 1:
+3
+1 2 3
+4 5 6
+7 8 9
+
+Output 2:
+
+1 0
+2 3
+4 0
+
+*******************************
+TC = O(r*c)
+SC = O(1)
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> diagonal(ArrayList<ArrayList<Integer>> A) {
+        ArrayList<ArrayList<Integer>> val = new ArrayList<ArrayList<Integer>>();
+        int r = A.size();
+        int c = A.get(0).size();
+        for(int j=0;j<c;j++){
+            val.add(new ArrayList<Integer>());
+            int x = 0;
+            int y = j;
+            while(x<r && y>=0){
+                val.get(j).add(A.get(x).get(y));
+                x++;
+                y--;
+            }
+        }
+        int n = (r*2)-1;
+        for(int i=1;i<r;i++){
+            val.add(new ArrayList<Integer>());
+            int x = i;
+            int y = c-1;
+            while(x<r && y>=0){
+                val.get(r+i-1).add(A.get(x).get(y));
+                x++;
+                y--;
+            }
+        }
+        for(int i=0;i<val.size();i++){
+            while(val.get(i).size()!=r){
+                val.get(i).add(0);
+            }
+        }
+        return val;
+    }
+}
