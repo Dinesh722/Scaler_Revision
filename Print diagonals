@@ -1,0 +1,45 @@
+Intermediate : 2d matrix
+Print all diagonals going R-L
+
+*******************************
+TC = O(r*c)
+SC = O(1)
+
+import java.util.*;
+class Main {
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int r = sc.nextInt();
+		int c = sc.nextInt();
+		
+		ArrayList<ArrayList<Integer>> mat = new ArrayList<ArrayList<Integer>>();
+		for(int i=0;i<r;i++){
+			mat.add(new ArrayList<Integer>());
+			for(int j=0;j<c;j++){
+				mat.get(i).add(sc.nextInt());
+			}
+		}
+		System.out.println(mat);
+		for(int i=0;i<c;i++){
+			int row = 0;
+			int col = i;
+			while(row<r && col>=0){
+				System.out.print(mat.get(row).get(col)+" ");
+				row++;
+				col--;
+			}
+			System.out.println();
+		}
+		for(int i=1;i<r;i++){
+			int row = i;
+			int col = c-1;
+			while(row<r && col>=0){
+				System.out.print(mat.get(row).get(col)+" ");
+				row++;
+				col--;
+			}
+			System.out.println();
+		}
+	}
+}
