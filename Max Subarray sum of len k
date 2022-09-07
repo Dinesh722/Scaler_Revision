@@ -1,0 +1,39 @@
+find the max subarray sum of length k
+
+i/p =>
+  A = -3 4 -2 5 3 -2 8 2 -1 4
+  k = 5
+  
+  ******************************************
+  Carry forward + Sliding Window Technique
+  TC = O(n)
+  SC = O(1)
+  
+import java.util.*;
+class Main {
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		ArrayList<Integer> mat = new ArrayList<Integer>();
+		for(int i=0;i<n;i++){
+			mat.add(sc.nextInt());
+		}
+		int k = sc.nextInt();
+    
+		int sum = 0;
+		int ans = Integer.MIN_VALUE;
+		for(int i=0;i<k;i++){ //sum of first K ele
+			sum += mat.get(i);
+		}
+		ans = Math.max(ans,sum);
+		int rem = 0;
+		for(int i=k;i<n;i++){ //sum of next ele by removing previous => sliding window
+			sum = sum - mat.get(rem) + mat.get(i);
+			rem++;
+			ans = Math.max(ans,sum);
+		}
+    
+		System.out.println(ans);
+	}
+}
