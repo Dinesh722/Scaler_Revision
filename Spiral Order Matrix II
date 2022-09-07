@@ -1,0 +1,62 @@
+Given an integer A, generate a square matrix filled with elements from 1 to A2 in spiral order and return the generated square matrix.
+
+Input 3:
+5
+
+1  2  3  4  5
+16 17 18 19 6
+15 24 25 20 7
+14 23 22 21 8
+13 12 11 10 9
+
+**********************************************
+TC = O(n^2)
+SC = O(n)
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> generateMatrix(int A) {
+        ArrayList<ArrayList<Integer>> val = new ArrayList<ArrayList<Integer>>();
+        addvalues(val,A);
+        int i=0;
+        int j=0;
+        int c = 1;
+        while(A>1){
+            for(int k=1;k<A;k++){
+                val.get(i).set(j,c);
+                j++;
+                c++;
+            }
+            for(int k=1;k<A;k++){
+                val.get(i).set(j,c);
+                i++;
+                c++;
+            }
+            for(int k=1;k<A;k++){
+                val.get(i).set(j,c);
+                j--;
+                c++;
+            }
+            for(int k=1;k<A;k++){
+                val.get(i).set(j,c);
+                i--;
+                c++;
+            }
+            i++;
+            j++;
+            A = A-2;
+        }
+        if(A==1){
+            val.get(i).set(j,c);
+        }
+        return val;
+    }
+
+    public static void addvalues(ArrayList<ArrayList<Integer>> val,int A){
+        for(int i=0;i<A;i++){
+            val.add(new ArrayList<Integer>());
+            for(int j=0;j<A;j++){
+                val.get(i).add(0);
+            }
+        }
+    }
+}
