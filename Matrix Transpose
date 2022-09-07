@@ -1,3 +1,6 @@
+******************************
+//this is for r*m
+
 import java.util.*;
 import java.lang.*;
 public class Main{
@@ -17,3 +20,33 @@ public class Main{
 
 Time Complexity = O(r*c);
 Space Complexity = O(r*c);
+ ***************************************
+ if it is n*n square matrix
+ 
+ TC = O(n^2)
+ SC = O(1)
+ 
+import java.util.*;
+class Main {
+	public static void main(String args[]) {
+		// Your code goes here
+		Scanner sc = new Scanner(System.in);
+		int r = sc.nextInt();
+		ArrayList<ArrayList<Integer>> mat = new ArrayList<ArrayList<Integer>>();
+		for(int i=0;i<r;i++){
+			mat.add(new ArrayList<Integer>());
+			for(int j=0;j<r;j++){
+				mat.get(i).add(sc.nextInt());
+			}
+		}
+		System.out.println(mat);
+		for(int i=0;i<r;i++){
+			for(int j=0;j<i;j++){
+				int temp = mat.get(i).get(j);
+				mat.get(i).set(j,mat.get(j).get(i));
+				mat.get(j).set(i,temp);
+			}
+		}
+		System.out.println(mat);
+	}
+}
