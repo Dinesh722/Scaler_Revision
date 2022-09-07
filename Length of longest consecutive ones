@@ -1,0 +1,84 @@
+Given a binary string A. It is allowed to do at most one swap between any 0 and 1. Find and return the length of the longest consecutive 1’s that can be achieved.
+
+Input 1:
+    A = "111000"
+Output 1:
+    3
+
+
+******************************************
+Tc = O(n*n) //exceptional case: it is O(n) -> refer SESSION note book
+SC = O(1)
+
+public class Solution {
+    public int solve(String A) {
+        int n = A.length();
+        return checkOnes(A,n);
+    }
+
+    public static int checkOnes(String A,int n){
+        int c = 0;
+        for(int i=0;i<n;i++){
+            if(A.charAt(i)=='1'){
+                c++;
+            }
+        }
+        if(c==n){
+            return c;
+        }
+        return swapFn(A,n,c);
+    }
+
+    public static int swapFn(String A,int n,int c){
+        int ans = 0;
+        for(int i=0;i<n;i++){
+            if(A.charAt(i)=='0'){
+                int l = leftConsective(i,A);
+                int r = rightConsecutive(i,n,A);
+                if(l+r==c){
+                    ans = Math.max(ans,(l+r));
+                }else{
+                    ans = Math.max(ans,(l+r+1));
+                }
+            }
+        }
+        // System.out.println("ans="+ans);
+        return ans;
+    }
+
+    public static int leftConsective(int i,String A){
+        int l = 0;
+        for(int j=i-1;j>=0;j--){
+            if(A.charAt(j)=='1'){
+                l++;
+            }else{
+                break;
+            }
+        }
+        return l;
+    }
+
+    public static int rightConsecutive(int i,int n,String A){
+        int r = 0;
+        // System.out.println("i="+i);
+        for(int j=i+1;j<n;j++){
+            if(A.charAt(j)=='1'){
+                r++;
+            }else{
+                break;
+            }
+        }
+        return r;
+    }
+}
+*******************************
+if replace is asked instead of swap
+
+no need of 
+if(l+r==c){
+    ans = Math.max(ans,(l+r));
+}else{
+    ans = Math.max(ans,(l+r+1));
+}
+
+simply put ans = Math.max(ans,(l+r+1));
