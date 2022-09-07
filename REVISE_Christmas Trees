@@ -1,0 +1,51 @@
+You are given an array A consisting of heights of Christmas trees and an array B of the same size consisting of the cost of 
+each of the trees (Bi is the cost of tree Ai, where 1 ≤ i ≤ size(A)), and you are supposed to choose 3 trees (let's say, indices p, q, and r), such that Ap < Aq < Ar, where p < q < r.
+The cost of these trees is Bp + Bq + Br.
+You are to choose 3 trees such that their total cost is minimum. Return that cost.
+If it is not possible to choose 3 such trees return -1.
+
+ A = [1, 6, 4, 2, 6, 9]
+ B = [2, 5, 7, 3, 2, 7]
+ op =  7 
+ 
+ (1based idx)
+ We can choose the trees with indices 1, 4 and 5, and the cost is 2 + 3 + 2 = 7. 
+ This is the minimum cost that we can get.
+ 
+ **************************************************
+ TC = O(n*n) //asked for TA Text request
+ SC = O(1)
+ public class Solution {
+    public int solve(ArrayList<Integer> A, ArrayList<Integer> B) {
+
+        int n = A.size();
+        int p = 0;
+        int q = 0;
+        int r = 0;
+        int ans = Integer.MAX_VALUE;
+        for(int i=1;i<n-1;i++){
+            p = i-1;
+            q = i;
+            r = i+1;
+            int min_p = Integer.MAX_VALUE;
+            int min_r = Integer.MAX_VALUE;
+            while(p>=0){
+                if(A.get(p)<A.get(q)){
+                    min_p = Math.min(min_p,B.get(p));
+                }
+                p--;
+            }
+            while(r<n){
+                if(A.get(q)<A.get(r)){
+                    min_r = Math.min(min_r,B.get(r));
+                }
+                r++;
+            }
+            if(min_p!=Integer.MAX_VALUE && min_r!=Integer.MAX_VALUE){
+                ans = Math.min(ans,(min_p + min_r + B.get(q)));
+            }
+            // System.out.println(ans+" "+min_p+" " + min_r+" " + B.get(q));
+        }   
+        return (ans!=Integer.MAX_VALUE?ans:-1);
+    }
+}
