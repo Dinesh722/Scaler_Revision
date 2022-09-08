@@ -14,6 +14,7 @@ If it is not possible to choose 3 such trees return -1.
  
  **************************************************
  TC = O(n*n) //asked for TA Text request
+ there is no optmized approach other than this as here time complexity will be 0(n*n) as it is less time compared with constraints
  SC = O(1)
  public class Solution {
     public int solve(ArrayList<Integer> A, ArrayList<Integer> B) {
