@@ -1,0 +1,27 @@
+Reverse the bits of an 32 bit unsigned integer A.
+
+a = 3;
+op = 3221225472
+
+Explanation:
+binary value of 3 in 32 bits
+00000000000000000000000000000011
+reversing the value
+11000000000000000000000000000000
+
+value  =  2^31 + 2^30
+
+********************************************
+public class Solution {
+	public long reverse(long a) {
+        double val = 0;
+        int c = 0;
+        while(a>0){
+            if(a%2==1)
+            val = val + Math.pow(2,31-c);
+            a=a/2;
+            c++;
+        }
+        return (long)val;
+	}
+}
