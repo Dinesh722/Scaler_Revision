@@ -1,0 +1,13 @@
+public class Solution {
+    public Long solve(Long A, int B) {
+        int c = 0;
+        long ans = 0;
+        long val = A;
+        while(c<B){
+            ans = ans + ((long)Math.pow(2,c) * (val%2));
+            val = val/2;
+            c++;
+        }
+        return (A-(long)ans);
+    }
+}
