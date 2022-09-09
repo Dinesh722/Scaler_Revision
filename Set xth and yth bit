@@ -1,0 +1,15 @@
+Given x,y set xth and yth bit as 1 in value o
+
+x = 3
+y = 1
+idx => 7 6 5 4 3 2 1 0
+0   => 0 0 0 0 0 0 0 0
+       0 0 0 0 1 0 1 0 => 10
+
+if(x==y){
+  return (1<<x)
+}
+return (1<<x) + (1<<y)
+or
+return (1<<x) | (1<<y)
+              
