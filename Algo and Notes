@@ -34,3 +34,36 @@ public class Solution {
         return (sum);
     }
 }
+
+***************Moore's Voting Algorithm**********************
+Dinesh   : x x x x x x x
+Harshini : x x x x
+zzz      : x x x x x x
+
+if two different seats are removed from 2 different people
+sure dinesh will have max freq
+
+EG:
+3 3 4 6 1 3 2 5 3 3 3
+1 => majority ele = 3
+      freq = 1
+      
+2 =>  ele = 3 
+      majority ele = 3
+      freq = 2
+      
+3 =>  ele = 4
+      majority ele = 3
+      freq--
+      freq = 1
+      
+4 =>  ele = 6
+      majority ele = 3
+      freq--
+      freq = 0
+    
+5 =>  ele = 1
+      majority ele = 1
+      freq = 1
+....
+atlas we will get the majority ele whos freq is greater in the array
