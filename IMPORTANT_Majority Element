@@ -1,0 +1,39 @@
+Given an array of size N, find the majority element. The majority element is the element that appears more than floor(n/2) times.
+You may assume that the array is non-empty and the majority element always exists in the array.
+
+[2, 1, 2]
+2 occurs 2 times which is greater than 3/2.
+
+********************************************
+//We use Moore's Voting algorith
+//Take MLA seat as exanmple
+//If two distinct ele is removed from array sure the maximum freq ele will remain
+//more details in algos
+
+TC : O(n)
+SC : O(1)
+
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int majorityElement(final List<Integer> A) {
+        //Moore's Voting Algorithm
+        int n = A.size();
+        int majorityElement = A.get(0);
+        int freq = 1;
+        for(int i=1;i<n;i++){
+            int x = A.get(i);
+            if(x==majorityElement){
+                freq++;
+            }else{
+                if(freq==0){
+                    majorityElement = x;
+                    freq++;
+                }else{
+                    freq--;
+                }
+            }
+            // System.out.println(majorityElement+" "+x+" "+freq);
+        }
+        return majorityElement;
+    }
+}
