@@ -13,7 +13,7 @@ op = "ib is this"
 TC = O(n)
 SC = O(n)
 int n = str.length();
-String[] val = str.toCharArray();
+String[] val = str.split(" ");
 string ans = "";
 for(int i=n-1;i>=0;i++){
   ans = ans + val[i] + (i==0?"":" "); //we are splitting into array with spaces for val
