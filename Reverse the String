@@ -19,3 +19,33 @@ for(int i=n-1;i>=0;i++){
   ans = ans + val[i] + (i==0?"":" "); //we are splitting into array with spaces for val
 }
 return ans;
+**********Approach 2*******************
+//using only strings
+String rev = "";
+int n = A.length();
+for(int i=n-1;i>=0;i--){
+    rev = rev + A.charAt(i);
+}
+// String ans = "";
+StringBuilder ans = new StringBuilder();
+int p1 = 0, p2 = 0;
+while(p1<n){
+    while(p2<n && rev.charAt(p2)!=' '){
+        p2++;
+    }
+    if(p1==p2){
+        p1 = p2+1;
+        p2++;
+        continue;
+    }
+    String temp = "";
+    for(int i=p1;i<p2;i++){
+        temp = rev.charAt(i) + temp;
+    }
+    p1 = p2+1;
+    p2++;
+    // ans =  ans + temp + (p1==n+1?"":" ");
+    ans.append(temp + (p1==n+1?"":" "));
+    // System.out.println(ans+"="+temp +" "+p1+" "+p2);
+}
+return String.valueOf(ans);
