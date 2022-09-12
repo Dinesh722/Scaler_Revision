@@ -1,0 +1,63 @@
+Given a string A of size N, find and return the longest palindromic substring in A.
+
+ip = abacab
+op = bacab
+
+*******************************
+TC = O(n^2)
+sc = O(1)
+
+public class Solution {
+    public String longestPalindrome(String A) {
+        int n = A.length();
+        int l = 0;
+        int r = 0;
+        int c = 0;
+        int lidx = -1;
+        int ridx = -1;
+        int ans = Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            //for even length
+            l = i;
+            r = i;
+            while(l>=0 && r<n){
+                if(A.charAt(l)==A.charAt(r)){
+                    c = r-l+1;
+                    if(c>ans){
+                        ans = c;
+                        lidx = l;
+                        ridx = r;
+                    }
+                }else{
+                    break;
+                }
+                l--;
+                r++;
+            }
+            //for odd length
+            l = i;
+            r = i+1;
+            while(l>=0 && r<n){
+                if(A.charAt(l)==A.charAt(r)){
+                    c = r-l+1;
+                    if(c>ans){
+                        ans = c;
+                        lidx = l;
+                        ridx = r;
+                    }
+                }else{
+                    break;
+                }
+                l--;
+                r++;
+            }
+            // System.out.println(lidx+" "+ridx+" "+ans);
+        }
+        StringBuilder val = new StringBuilder();
+        for(int i=lidx;i<=ridx;i++){
+            val.append(A.charAt(i));
+        }
+        return String.valueOf(val);
+    }
+
+}
