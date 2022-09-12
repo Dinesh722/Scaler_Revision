@@ -1,0 +1,44 @@
+Given an array A of non-negative integers, arrange them such that they form the largest number.
+Note: The result may be very large, so you need to return a string instead of an integer.
+
+A = [3, 30, 34, 5, 9]
+"9534330"
+
+******************************************
+//Using comparator
+TC = O(nlogn)
+sc = O(n)
+
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public String largestNumber(final List<Integer> A) {
+        int n = A.size();
+        // Collections.sort(A,new SortByGreatest());
+        List<Integer> val = new ArrayList<Integer>(A);
+        Collections.sort(val,new SortByGreatest());
+        // System.out.println(val);
+        StringBuilder str = new StringBuilder();
+        boolean startZero = true;
+        for(int i=0;i<n;i++){
+            if(str.length()==0 && A.get(i)==0){
+                continue;
+            }
+            str.append(val.get(i));
+        }
+        if(str.length()==0){
+            return "0";
+        }
+        return String.valueOf(str);
+    }
+
+    class SortByGreatest implements Comparator<Integer>{
+        // @Override
+        public int compare(Integer A,Integer B){
+            String Aval = String.valueOf(A);
+            String Bval = String.valueOf(B);
+            String first = Aval + Bval;
+            String second = Bval + Aval;
+            return second.compareTo(first);
+        }
+    }
+}
