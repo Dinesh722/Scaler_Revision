@@ -1,0 +1,43 @@
+You are given a string A of size N consisting of lowercase alphabets.
+You can change at most B characters in the given string to any other lowercase alphabet such that the number of distinct characters in the string is minimized.
+Find the minimum number of distinct characters in the resulting string.
+
+Example Input
+A = "abcabbccd"
+B = 3
+
+Example Output
+2
+
+********************************************
+TC = O(nlogn)
+SC = O(26)
+
+public class Solution {
+    public int solve(String A, int B) {
+        int n = A.length();
+        if(B==0){
+            return n;
+        }
+        int[] val = new int[26];
+        for(int i=0;i<n;i++){  //storing freq of characters in the string
+            val[A.charAt(i)-'a']++;
+        }
+        ArrayList<Integer> ans = new ArrayList<Integer>();
+        for(int i=0;i<26;i++){  //storing only available characters
+            if(val[i]>0){
+                ans.add(val[i]);
+            }
+        }
+        Collections.sort(ans);  //so the min freq characters will come first
+        // System.out.println(ans);
+        int c = 0;
+        for(int i=0;i<ans.size();i++){
+            B = B - ans.get(i);  //we can change atmost B characters
+            if(B<0){
+                return ans.size()-i;  //this will give the value of characters in the string after changing B times
+            }
+        }
+        return 1;
+    }
+}
