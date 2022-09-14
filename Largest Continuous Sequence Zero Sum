@@ -1,0 +1,48 @@
+Given an array A of N integers.
+Find the largest continuous sequence in a array which sums to zero.
+
+A = [1,2,-2,4,-4]
+op = [2,-2,4,-4]
+Example Explanation
+[2,-2,4,-4] is the longest sequence with total sum of zer0
+
+******************************************
+TC : O(n)
+SC : O(n)
+
+public class Solution {
+    public ArrayList<Integer> lszero(ArrayList<Integer> A) {
+        //approach is to store the sum and index value in hm
+        //if hm contains then store the s and e value and get the max length
+        //in hm if sum is already in hm eg : if sum comes 1 and already if it is in hm then do the else part
+        int n = A.size();
+        HashMap<Long,Integer> hm = new HashMap<Long,Integer>();
+        long sum = 0;
+        int len = -1;
+        int l = -1;
+        int r = -1;
+        hm.put(0L,-1); //because if zero then we will store directly
+        for(int i=0;i<n;i++){
+            sum += A.get(i);
+            if(!hm.containsKey(sum)){
+                hm.put(sum,i);
+            }else{
+                if(len < i-hm.get(sum)){
+                    l = hm.get(sum) + 1;
+                    r = i;
+                    len = r - hm.get(sum);
+                }
+            }
+        }
+        // System.out.println(l+" "+r);
+        
+        ArrayList<Integer> ans = new ArrayList<Integer>();
+        if(l==-1){
+            return ans;
+        }
+        for(int i=l;i<=r;i++){
+            ans.add(A.get(i));
+        }
+        return ans;
+    }
+}
