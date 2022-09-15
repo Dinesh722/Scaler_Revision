@@ -2,7 +2,7 @@
 A = 9
 op = 34
 ***********************************
-TC : 
+T(n) : 2^n (worst)
 SC : 
 public class Solution {
     public int findAthFibonacci(int A) {
