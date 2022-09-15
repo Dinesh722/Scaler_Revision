@@ -1,6 +1,8 @@
 https://www.scaler.com/academy/mentee-dashboard/class/22621/assignment/problems/201/submissions
 
 ***************Recursion*****************
+T(n) = logn
+
 public class Solution {
     public int pow(int A, int B, int C) {
 
