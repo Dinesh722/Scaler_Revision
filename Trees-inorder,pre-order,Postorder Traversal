@@ -1,0 +1,38 @@
+Data(d) = kids
+left(l) = Engagement
+right(r) = Marraige
+
+********************
+ldr
+
+public static void inorder(TreeNode A,ArrayList<Integer> val){
+    if(A==null){
+        return;
+    }
+    inorder(A.left,val);
+    val.add(A.val);
+    inorder(A.right,val);
+}
+
+**********************
+dlr
+
+public static void preorder(TreeNode A,ArrayList<Integer> val){
+    if(A==null){
+        return;
+    }
+    val.add(A.val);
+    preorder(A.left,val);
+    preorder(A.right,val);
+}
+*********************
+lrd
+
+public static void postorder(TreeNode A,ArrayList<Integer> val){
+    if(A==null){
+        return;
+    }
+    postorder(A.left,val);
+    postorder(A.right,val);
+    val.add(A.val);
+}
