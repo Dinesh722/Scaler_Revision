@@ -36,3 +36,14 @@ public static void postorder(TreeNode A,ArrayList<Integer> val){
     postorder(A.right,val);
     val.add(A.val);
 }
+
+************height************
+
+public static int heightNode(TreeNode A){
+    if(A==null){
+        return 0;
+    }
+    int l = heightNode(A.left);
+    int r = heightNode(A.right);
+    return 1+(Math.max(l,r));
+}
