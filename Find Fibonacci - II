@@ -1,0 +1,17 @@
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ……..
+A = 9
+op = 34
+***********************************
+TC : 
+SC : 
+public class Solution {
+    public int findAthFibonacci(int A) {
+        if(A==1 || A==2){
+            return 1;
+        } 
+        if(A==0){
+            return 0;
+        }
+        return (findAthFibonacci(A-1) + findAthFibonacci(A-2));
+    }
+}
