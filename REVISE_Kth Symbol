@@ -1,0 +1,40 @@
+On the first row, we write a 0. Now in every subsequent row, we look at the previous row and replace each occurrence of 0 with 01, 
+and each occurrence of 1 with 10.
+Given row number A and index B, return the Bth indexed symbol in row A. (The values of B are 1-indexed.).
+
+A = 2
+B = 1
+Output 1:
+0
+
+Explanation:
+(row) (idx)
+        1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16
+ 1      0 |   |   |   |   |   |   |   |   |    |    |    |    |    |    |
+ 2      0 | 1 |   |   |   |   |   |   |   |    |    |    |    |    |    |
+ 3      0 | 1 | 1 | 0 |   |   |   |   |   |    |    |    |    |    |    |
+ 4      0 | 1 | 1 | 0 | 1 | 0 | 0 | 1 |   |    |    |    |    |    |    |
+ 5      0 | 1 | 1 | 0 | 1 | 0 | 0 | 1 | 1 | 0  | 0  |  1 |  0 |  1 |  1 |  0
+ 
+ index  children
+ 1        1,2
+ 4        7,8
+ 8        15,16
+ i        2i-1,2i
+ 
+ reversing
+ (i+1)/2
+********************************************
+public class Solution {
+    public int solve(int A, int B) {
+        if(B==1){
+            return 0;
+        }
+        int k = solve(A-1,(B+1)/2);
+        if(B%2!=0){
+            return k;
+        }else{
+            return 1-k;
+        }
+    }
+}
