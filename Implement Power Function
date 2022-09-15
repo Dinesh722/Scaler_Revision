@@ -1,0 +1,26 @@
+https://www.scaler.com/academy/mentee-dashboard/class/22621/assignment/problems/201/submissions
+
+***************Recursion*****************
+public class Solution {
+    public int pow(int A, int B, int C) {
+
+        if(A==0){
+            return A;
+        }
+        if(B==0){
+            return 1;
+        }
+        long k = pow(A,B/2,C);
+        if(B%2==0){
+            long ans = (k*k)%C;
+            return (int)(ans);
+        }else{
+            long ans = (k*k)%C;
+            ans = (A*ans)%C;
+            if(ans<0){
+                ans += C;
+            }
+            return (int)(ans);
+        }
+    }
+}
