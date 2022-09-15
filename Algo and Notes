@@ -67,3 +67,8 @@ EG:
       freq = 1
 ....
 atlas we will get the majority ele whos freq is greater in the array
+
+*******************Recursion********************
+Assumption: Decide what your function does and assume it does
+Main Logic : Solving the original problem with sub-problem
+Base Condition :  when should code stop
