@@ -1,0 +1,25 @@
+Find the contiguous non-empty subarray within an array, A of length N, with the largest sum.
+
+ A = [1, 2, 3, 4, -10] 
+ op = 10
+ 
+ ************Kadene's algorithm************
+ TC = O(n)
+ SC = O(1)
+ 
+ public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int maxSubArray(final List<Integer> A) {
+        int n = A.size();
+        int ans = Integer.MIN_VALUE;
+        int sum = 0;
+        for(int i=0;i<n;i++){
+            sum = sum + A.get(i);
+            ans = Math.max(ans,sum);
+            if(sum<0){
+                sum = 0;
+            }
+        }
+        return ans;
+    }
+}
