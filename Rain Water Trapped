@@ -1,0 +1,37 @@
+Given a vector A of non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+
+A = [0, 1, 0, 2]
+op = 1
+
+*********************************************
+TC = O(n)
+SC = O(n)
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int trap(final List<Integer> A) {
+        int n = A.size();
+        ArrayList<Integer> pfMax = new ArrayList<Integer>();
+        pfMax.add(A.get(0));
+        for(int i=1;i<n;i++){
+            pfMax.add(Math.max(pfMax.get(i-1),A.get(i)));
+        }
+
+        ArrayList<Integer> sfMax = new ArrayList<Integer>();
+        for(int i=0;i<n;i++){
+            sfMax.add(0);
+        }
+        sfMax.set(n-1,A.get(n-1));
+        for(int i=n-2;i>=0;i--){
+            sfMax.set(i,Math.max(sfMax.get(i+1),A.get(i)));
+        }
+        int ans = 0;
+        for(int i=1;i<n-1;i++){
+            int l = pfMax.get(i-1);
+            int r = sfMax.get(i+1);
+            int min = Math.min(l,r);
+            int height = Math.max(0,min-A.get(i));
+            ans = ans + height;
+        }
+        return ans;
+    }
+}
