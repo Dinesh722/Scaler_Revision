@@ -35,6 +35,9 @@ public class Solution {
     }
 }
 
+
+for 2d matrix 
+(i+1)(j+1)(m-j)(n-i)*ele;
 ***************Moore's Voting Algorithm**********************
 Dinesh   : x x x x x x x
 Harshini : x x x x
