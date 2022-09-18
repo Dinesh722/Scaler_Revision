@@ -1,0 +1,88 @@
+Given a matrix of integers A of size N x M and multiple queries Q, for each query, find and return the submatrix sum.
+
+Inputs to queries are top left (b, c) and bottom right (d, e) indexes of submatrix whose sum is to find out.
+
+NOTE:
+
+Rows are numbered from top to bottom, and columns are numbered from left to right.
+Sum may be large, so return the answer mod 109 + 7.
+
+
+ A = [   [1, 2, 3]
+         [4, 5, 6]
+         [7, 8, 9]   ]
+ B = [1, 2]
+ C = [1, 2]
+ D = [2, 3]
+ E = [2, 3]
+ 
+ Output 1:
+ [12, 28]
+ 
+ Explanation 1:
+ For query 1: Submatrix contains elements: 1, 2, 4 and 5. So, their sum is 12.
+ For query 2: Submatrix contains elements: 5, 6, 8 and 9. So, their sum is 28
+
+******************************************
+//Take pf row wise first
+//with samw pf calculate col wise
+
+TC = O(q+n);
+SC = O(n);
+
+public class Solution {
+    public ArrayList<Integer> solve(ArrayList<ArrayList<Integer>> A, ArrayList<Integer> B, ArrayList<Integer> C, ArrayList<Integer> D, ArrayList<Integer> E) {
+        // int r = A.size();
+        // int c = A.get(0).size();
+        ArrayList<ArrayList<Integer>> pf = new ArrayList<ArrayList<Integer>>();
+        getPrefix(A,pf);
+        ArrayList<Integer> val = new ArrayList<Integer>();
+        int q = B.size();
+        long mod = 1000000007;
+        for(int i=0;i<q;i++){
+
+            int r1 = B.get(i)-1;
+            int c1 = C.get(i)-1;
+            int r2 = D.get(i)-1;
+            int c2 = E.get(i)-1;
+
+            long sum1 = pf.get(r2).get(c2) - (c1!=0?pf.get(r2).get(c1-1):0);
+            long add1 = (sum1 + mod) % mod;
+            long sum2 =  ( -(r1!=0?pf.get(r1-1).get(c2):0) + (r1!=0&&c1!=0?(pf.get(r1-1).get(c1-1))%mod:0) );
+            long add2 = (sum2+mod)%mod;
+            long sum = (add1+add2)%mod;
+            val.add((int)(sum%mod));
+        }
+        // System.out.println(B);
+        return val;
+    }
+
+    public static void getPrefix(ArrayList<ArrayList<Integer>> A,ArrayList<ArrayList<Integer>> pf){
+        rowCalculate(A,pf);
+        colCalculate(A,pf);
+    }
+
+    public static void rowCalculate(ArrayList<ArrayList<Integer>> A,ArrayList<ArrayList<Integer>> pf){
+        int r = A.size();
+        int c = A.get(0).size();
+        int mod = 1000000000 + 7;
+        for(int i=0;i<r;i++){
+            pf.add(new ArrayList<Integer>());
+            pf.get(i).add(A.get(i).get(0));
+            for(int j=1;j<c;j++){
+                pf.get(i).add( ( ( pf.get(i).get(j-1) )%mod + ( A.get(i).get(j) )%mod )%mod );
+            }
+        }
+    }
+
+    public static void colCalculate(ArrayList<ArrayList<Integer>> A,ArrayList<ArrayList<Integer>> pf){
+        int r = A.size();
+        int c = A.get(0).size();
+        int mod = 1000000000 + 7;
+        for(int i=0;i<c;i++){
+            for(int j=1;j<r;j++){
+                pf.get(j).set(i,( ( pf.get(j-1).get(i) )%mod + ( pf.get(j).get(i) )%mod )%mod);
+            }
+        }
+    }
+}
