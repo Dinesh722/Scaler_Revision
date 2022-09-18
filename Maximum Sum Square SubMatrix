@@ -1,0 +1,47 @@
+Given a 2D integer matrix A of size N x N, find a B x B submatrix where B<= N and B>= 1, such that the sum of all the elements in the submatrix is maximum.
+
+**************Using carry forward***************************
+TC = O(r^2);
+SC = O(r);
+
+public class Solution {
+    public int solve(ArrayList<ArrayList<Integer>> A, int B) {
+
+        int n = A.size();
+        ArrayList<Integer> pf = new ArrayList<Integer>(A.get(0));
+        for(int i=1;i<B;i++){
+            for(int j=0;j<n;j++){
+                pf.set(j,pf.get(j) + A.get(i).get(j));
+                
+            }
+        }
+        int ans = carryForward(pf,B);
+        for(int i=0;i<n-B;i++){
+            for(int j=0;j<n;j++){
+                int sum = pf.get(j) - A.get(i).get(j) + A.get(i+B).get(j);
+                pf.set(j,sum);
+            }
+            ans = Math.max(ans,carryForward(pf,B));
+        }
+        return ans;
+    }
+
+    public static int carryForward(ArrayList<Integer> pf, int B){
+        int sum = 0;
+        int n = pf.size();
+        int ans = Integer.MIN_VALUE;
+        for(int i=0;i<B;i++){
+            sum = sum + pf.get(i);
+        }
+        ans = Math.max(ans,sum);
+        for(int i=B;i<n;i++){
+            int st = B-i;
+            if(st<0){
+                st = st*(-1);
+            }
+            sum = sum - pf.get(st) + pf.get(i);
+            ans = Math.max(ans,sum);
+        }
+        return ans;
+    }
+}
