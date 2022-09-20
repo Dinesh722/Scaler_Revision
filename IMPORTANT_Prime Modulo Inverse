@@ -1,0 +1,30 @@
+Given two integers A and B. Find the value of A-1 mod B where B is a prime number and gcd(A, B) = 1.
+
+A-1 mod B is also known as modular multiplicative inverse of A under modulo B.
+
+ A = 3
+ B = 5
+ op = 2
+ 
+ *********************************************************
+ //this is applied using fermats Therorem
+// A^-1 mod B = ( A^(B-2) ) % B
+
+TC = O(logB)
+SC = O(1)
+
+ public class Solution {
+    public int solve(int A, int B) {
+        long p = B-2;
+        long x = A;
+        long ans = 1;
+        while(p>0){
+            if((p&1)==1){
+                ans = (ans * x) % B;
+            }
+            p = p>>1;
+            x = ((x%B) * (x%B)) %B;
+        }
+        return (int)ans;
+    }
+}
