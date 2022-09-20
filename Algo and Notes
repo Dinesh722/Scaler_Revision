@@ -116,3 +116,27 @@ Find the contiguous non-empty subarray within an array, A of length N, with the 
         return ans;
     }
 }
+
+********************fermats Therorem*************************************
+ //this is applied using 
+// A^-1 mod B = ( A^(B-2) ) % B
+
+TC = O(logB)
+SC = O(1)
+
+ public class Solution {
+    public int solve(int A, int B) {
+        long p = B-2;
+        long x = A;
+        long ans = 1;
+        while(p>0){
+            if((p&1)==1){
+                ans = (ans * x) % B;
+            }
+            p = p>>1;
+            x = ((x%B) * (x%B)) %B;
+        }
+        return (int)ans;
+    }
+}
+
