@@ -140,3 +140,9 @@ SC = O(1)
     }
 }
 
+**************Euclidean gcd***********
+Correct version
+gcd(A,B) = gcd(A%B,B)
+
+For code
+gcd(A,B) = gcd(B,A%B);
