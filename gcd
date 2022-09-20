@@ -63,5 +63,5 @@ public class Main {
     }
 }
 
-Time complexity = 
+Time complexity = O(log(Max(A,B)))
 Space Complexity = O(1)
