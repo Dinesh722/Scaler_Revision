@@ -26,3 +26,19 @@ public class Solution {
         }
     }
 }
+
+
+***************Binary Exponentiation******************
+TC = O(logB)
+SC = O(1)
+
+Given A,B,mod;
+int x = A;
+int ans = 1;
+while(B>0){
+    if((p&1)==1){
+        ans = (ans * x) % mod;
+    }
+    B = B>>1;
+    x = ( (x%mod) * (x%mod) ) % mod;
+}
