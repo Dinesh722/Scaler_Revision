@@ -24,4 +24,27 @@ class Main {
 Time Complexity : O(n^2)
 Space Complexit : O(1)
 
-***************************idea 1***********************************************
+***************************Approach***********************************************
+TC = O(nloglogn);
+sc = n+1
+//take boolean of size n+1 and make true
+boolean[] val = new boolean[n+1];
+for(int i=0;i<=n;i++){
+	val[i] = true;
+}
+val[0] = false;
+val[1] = false;
+for(int i=2;i<=n;i++){
+	if(val[i]){
+	//i*i because 3 will start from making true from 9
+	//because 2 has already made 6 false
+		for(int j=i*i;j<=n;j=j+i){
+			val[j] = false;
+		}
+	}
+}
+for(int i=0;i<=n;i++){
+	if(val[i]){
+		System.out.print(i+" ");
+	}
+}
