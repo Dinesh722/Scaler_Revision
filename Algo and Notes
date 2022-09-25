@@ -91,6 +91,9 @@ Assumption: Decide what your function does and assume it does
 Main Logic : Solving the original problem with sub-problem
 Base Condition :  when should code stop
 
+Preorder : DLR
+Inorder : LDR
+Postorder : LRD
 *************Kadene's algorithm*************
 Find the contiguous non-empty subarray within an array, A of length N, with the largest sum.
 
